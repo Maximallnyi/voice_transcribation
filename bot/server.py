@@ -1,6 +1,5 @@
 from typing import List, Any
 
-import requests
 from telegram import Update, InlineKeyboardMarkup
 from telegram.ext import (
     ApplicationBuilder,
@@ -25,7 +24,8 @@ class Bot(object):
                     "automatic-speech-recognition",
                     model="antony66/whisper-large-v3-russian",
                     device="cuda" if torch.cuda.is_available() else "cpu",
-                    generate_kwargs={"language": "ru", "max_new_tokens": 128}
+                    generate_kwargs={"language": "ru", "max_new_tokens": 128},
+                    return_timestamps=True
         )
 
     async def start(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
